@@ -1,0 +1,97 @@
+<div class="addContainer">
+    <div class="modalHeader">
+        <div class="editRowModal">
+            <div class="modalHeader clearfix">
+                <div class="modal-about">
+                    <div class="font-weight-bold p-t-5 font-17">
+                        {{dialogTitle}}</div>
+                </div>
+            </div>
+        </div>
+        <button mat-icon-button (click)="dialogRef.close()" aria-label="Close dialog">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <div mat-dialog-content>
+        <form class="register-form m-4" [formGroup]="estudianteForm" (ngSubmit)="submit">
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2" >
+                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput formControlName="nombre" required>
+                        <mat-icon matSuffix>person</mat-icon>
+                        <mat-error *ngIf="estudianteForm.get('nombre').hasError('required')">
+                            Nombre requerido
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2" >
+                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>Apellido 1</mat-label>
+                        <input matInput formControlName="apellido1" required>
+                        <mat-icon matSuffix>person</mat-icon>
+                        <mat-error *ngIf="estudianteForm.get('apellido1').hasError('required')">
+                            apellido1 requerido
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2" >
+                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>Apellido 2</mat-label>
+                        <input matInput formControlName="apellido2" required>
+                        <mat-icon matSuffix>person</mat-icon>
+                        <mat-error *ngIf="estudianteForm.get('apellido2').hasError('required')">
+                            apellido2 requerido
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2" >
+                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>Documento</mat-label>
+                        <input matInput formControlName="documento" required>
+                        <mat-icon matSuffix>person</mat-icon>
+                        <mat-error *ngIf="estudianteForm.get('documento').hasError('required')">
+                            documento requerido
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class=" col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2" *ngIf="this.action !== 'edit'">
+                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>Correo Electronico</mat-label>
+                        <input matInput formControlName="correo">
+                        <mat-icon matSuffix>mail</mat-icon>
+                        <mat-error *ngIf="estudianteForm.get('correo').hasError('required')">
+                            Correo es requerido
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2" *ngIf="this.action !== 'edit'">
+                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                        <mat-label>Clave</mat-label>
+                        <input matInput [type]="hide ? 'password' : 'text'" formControlName="clave" required>
+                        <a class="show-pwd-icon" href="#" onClick="return false;" matSuffix (click)="hide = !hide"
+                            [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </a>
+                        <mat-error *ngIf="estudianteForm.get('clave').hasError('required')">
+                            Clave es necesaria
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                    <div class="example-button-row">
+                        <button mat-raised-button color="primary" *ngIf="this.action !== 'edit'" [type]="submit"
+                            [disabled]="!estudianteForm.valid" 
+                            (click)="confirmAdd()">Guardar</button>
+                        <button mat-raised-button color="primary" *ngIf="this.action === 'edit'" [type]="submit"
+                            [disabled]="!estudianteForm.valid" 
+                            (click)="confirmUpdate()">Actualizar</button>
+                        <button mat-raised-button color="warn" (click)="onNoClick()" tabindex="-1">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
